@@ -1,0 +1,46 @@
+version: '3'
+services:
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    ports:
+      - 8000:8000
+    networks:
+      - app-network
+
+  dynamodb-admin:
+    image: aaronshaf/dynamodb-admin
+    environment:
+      DYNAMO_ENDPOINT: dynamodb:8000
+    ports:
+      - 8001:8001
+    networks: 
+      - app-network
+
+  users:
+    build: ./components/ms/users
+    image: melyo/gs-users:1.0
+    volumes:
+      - ./components/ms/users/src:/srv/src
+    ports:
+      - 5001:5001
+    networks: 
+      - app-network
+
+  api:
+    build: ./components/api/api
+    image: melyo/gs-api:1.0
+    environment:
+      AWS_REGION: eu-east-1
+      AWS_ACCESS_KEY_ID: local
+      AWS_SECRET_ACCESS_KEY: local
+    volumes:
+      - ./components/api/api/src:/srv/src
+    ports:
+      - 4000:4000
+    networks: 
+      - app-network
+
+networks:
+  app-network:
+    driver: "bridge"

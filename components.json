@@ -1,0 +1,14 @@
+{
+    "api": {
+        "GS-API": {
+            "name": "api",
+            "repo": "https://github.com/melyo/gs-api.git"
+        }
+    },
+    "ms": {
+        "GS-USERS": {
+            "name": "users",
+            "repo": "https://github.com/melyo/gs-users.git"
+        }
+    }
+}
