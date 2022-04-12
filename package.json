@@ -17,6 +17,6 @@
     "node-persist": "^3.0.1",
     "prompts": "^1.2.1",
     "rimraf": "^2.6.2",
-    "simple-git": "^1.107.0"
+    "simple-git": "^3.5.0"
   }
 }
